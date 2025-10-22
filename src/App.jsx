@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import WeatherCard from "./components/WeatherCard";
 import { getWeatherByCoords } from "./api/weatherAPI";
-import './App.css';
+import "./App.css";
 
 export default function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -10,7 +10,7 @@ export default function App() {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
-      async (position) => {
+      async position => {
         const { latitude, longitude } = position.coords;
 
         try {
@@ -23,7 +23,7 @@ export default function App() {
           setLoading(false);
         }
       },
-      (geoError) => {
+      geoError => {
         console.error(geoError);
         setError("Location could not be determined.");
         setLoading(false);
@@ -31,17 +31,17 @@ export default function App() {
     );
   }, []);
 
-  if (loading) {
-    return <p>Load weather data...</p>;
-  }
-  if (error) {
-    return <p>{error}</p>;
-  }
-
   return (
-    <>
-      <h1>Weather Dashboard App</h1>
-      {weatherData ? <WeatherCard data={weatherData} /> : <p>No data</p>}
-    </>
-  )
+    <div className="min-h-screen bg-gradient-to-b from-blue-200 to-indigo-400 flex flex-col items-center justify-start p-6">
+      <h1 className="text-3xl font-bold text-white drop-shadow-lg mt-6">
+        Weather Dashboard
+      </h1>
+      {loading && <p className="text-white mt-4">Load weather data...</p>}
+      {error &&
+        <p className="text-red-200 mt-4">
+          {error}
+        </p>}
+      {weatherData && <WeatherCard data={weatherData} />}
+    </div>
+  );
 }
