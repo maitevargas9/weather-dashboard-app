@@ -1,4 +1,4 @@
-const API_KEY = import.meta.env.OPENWEATHERMAP_API_KEY;
+const API_KEY = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
 
 export async function getWeatherByCoords(lat, lon) {
   const res = await fetch(
@@ -9,7 +9,7 @@ export async function getWeatherByCoords(lat, lon) {
 
 export async function getForecastByCoords(lat, lon) {
   const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=7&appid=${API_KEY}&units=metric&lang=de`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=de`
   );
   return res.json();
 }
