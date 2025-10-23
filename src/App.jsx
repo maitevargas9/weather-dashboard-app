@@ -18,7 +18,7 @@ export default function App() {
           const current = await getWeatherByCoords(latitude, longitude);
           const forecast = await getForecastByCoords(latitude, longitude);
           setWeatherData({ current });
-          setForecastData(forecast.list.slice(0, 7));
+          setForecastData(forecast);
         } catch (err) {
           console.error(err);
           setError("Error loading weather data.");
