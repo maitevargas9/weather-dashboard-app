@@ -4,6 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { fetchWeather } from "./features/weatherSlice";
 import WeatherCard from "./components/WeatherCard";
 import ForecastList from "./components/ForecastList";
+import Trips from "./pages/Trips";
 import "./App.css";
 
 function Destinations() {
@@ -13,17 +14,6 @@ function Destinations() {
       <p className="text-white/80">
         Soon you will be able to select from predefined destinations and check
         the weather to check.
-      </p>
-    </div>
-  );
-}
-
-function Trips() {
-  return (
-    <div className="text-center mt-10">
-      <h2 className="text-2xl font-bold mb-4">🧳 My Travels</h2>
-      <p className="text-white/80">
-        Here you can soon plan, save, and adjust your trips.
       </p>
     </div>
   );
