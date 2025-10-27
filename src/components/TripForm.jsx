@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addTrip, updateTrip } from "../features/tripsSlice";
 import { v4 as uuid } from "uuid";
@@ -7,6 +7,15 @@ export default function TripForm({ editingTrip, setEditingTrip }) {
   const dispatch = useDispatch();
   const [form, setForm] = useState(
     editingTrip || { id: "", destination: "", from: "", to: "" }
+  );
+
+  useEffect(
+    () => {
+      if (editingTrip) {
+        setForm(editingTrip);
+      }
+    },
+    [editingTrip]
   );
 
   const handleSubmit = e => {
